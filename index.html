@@ -12,39 +12,41 @@
 <body>
 
 <!--Menu Page-->
-    <div id="menu-page">
-        <div class="header">
-            Memory Quiz v.1
-        </div>
-        <div id="buttonSelect">
-            <button type="button" id="start" class="button" onclick="gotoInstructions1()">Click to Start</button>
-        </div>
-
-        <button type="button" id="creditsOption" class="button" onclick="viewCredits()">View Credits</button>
-
+<div id="menu-page">
+    <div class="header">
+        Thought, Memory, and Comprehension Quiz v.2
     </div>
+    <div id="buttonSelect">
+        <button type="button" id="start" class="button" onclick="gotoInstructions1()">Click to Start</button>
+    </div>
+
+    <button type="button" id="creditsOption" class="button" onclick="viewCredits()">View Credits</button>
+
+</div>
 
 <!--Credits Page-->
-    <div id="credits-page">
-        <button type="button" id="backToMenu2" class="button" onclick="goBackToMenu()">Menu</button>
-        <div id="credits" style="margin-top: 40px;">
-            Made by Hannah Howell
-        </div>
+<div id="credits-page">
+    <button type="button" id="backToMenu2" class="button" onclick="goBackToMenu()">Menu</button>
+    <div id="credits" style="margin-top: 40px;">
+        Made by Hannah Howell
     </div>
+</div>
 
 
 <!--Instruction 1 Page-->
 <div id="instruction-1-page" class="instruction-page">
-    <div style="margin-top: 40px;">
+    <div style="margin-top: 40px;" class="header">
         Answer as many simple math questions correctly as possible in 30 seconds
     </div>
-    <button type="button" class="button" onclick="gotoMath()">OK</button>
+    <div class="buttonCenter" id="buttonSelect1">
+        <button type="button" class="button" onclick="gotoMath()">OK</button>
+    </div>
 </div>
 
 <!--GamePlay Page 1-->
 <div id="math-page">
     <div id="math_eq" class="header"></div>
-    <form style="margin: 20px">
+    <form style="margin: 20px" id="mathAnswerSubmission">
         <input id="userAnswer" type="number">
         <br>
         <input type="button" class=button onclick="checkAnswer()" value="Enter">
@@ -61,38 +63,47 @@
 
 <!--Instruction 2 Page-->
 <div id="instruction-2-page" class="instruction-page">
-    <div style="margin-top: 40px;">
-        You'll be shown a 4x4 grid of red and white squares for 5 seconds
+    <div id="totalMath" class="header"></div>
+    <div style="margin-top: 40px;" class="header">
+        Next, you'll be shown a 5x5 grid of red and white squares for 5 seconds.
     </div>
-    <div style="margin-top: 40px;">
-        After 5 seconds, you'll replicate the red square placement
+    <div style="margin-top: 40px;" class="header">
+        After 5 seconds, you'll replicate the red square placement by clicking the grid.
     </div>
-    <button type="button" class="button" onclick="gotoGrid()">OK</button>
+    <div class="buttonCenter" id="buttonSelect2">
+        <button type="button" class="button" onclick="gotoGrid()">OK</button>
+    </div>
 </div>
 
 <!--GamePlay Page 2-->
 <div id="grid-page">
     <div id="canvasBox">
         <canvas id = "canvas" width = "400" height = "400" style = "width: 400px; height: 400px; position: absolute; z-index: 1"></canvas>
-        <canvas id = "canvas-foreground" width = "400" height = "400" style = "width: 400px; height: 400px; position:absolute; z-index: 2"></canvas>    </div>
-    <button type="button" class="button" id="submitGridButton" onclick="submitGrid()" style="float: right">Submit Grid</button>
+        <canvas id = "canvas-foreground" width = "400" height = "400" style = "width: 400px; height: 400px; position:absolute; z-index: 2"></canvas>
+    </div>
+    <button type="button" class="button" id="submitGridButton" onclick="submitGrid()" style="float: right; display: none">Submit Grid</button>
 </div>
 
 <!--Instruction 3 Page-->
 <div id="instruction-3-page" class="instruction-page">
-    <div style="margin-top: 40px;">
+    <div id="totalGrid" class="header"></div>
+    <div style="margin-top: 40px;" class="header">
         Answer as many word associations as you can in 30 seconds
     </div>
-    <button type="button" class="button" onclick="gotoWordAssociations()">OK</button>
+    <div class="buttonCenter" id="buttonSelect3">
+        <button type="button" class="button" onclick="gotoWordAssociations()">OK</button>
+    </div>
 </div>
 
 <!--GamePlay Page 3-->
 <div id="word-association-page">
     <div id="phrase" class="header"></div>
-    <input type="button" id="buttonAnswer1" class=button onclick="checkAnswer1()" value="">
-    <input type="button" id="buttonAnswer2" class=button onclick="checkAnswer2()" value="">
-    <input type="button" id="buttonAnswer3" class=button onclick="checkAnswer3()" value="">
-    <input type="button" id="buttonAnswer4" class=button onclick="checkAnswer4()" value="">
+    <div id="submitButtons">
+        <input type="button" id="buttonAnswer1" class=button onclick="checkAnswer1()" value="">
+        <input type="button" id="buttonAnswer2" class=button onclick="checkAnswer2()" value="">
+        <input type="button" id="buttonAnswer3" class=button onclick="checkAnswer3()" value="">
+        <input type="button" id="buttonAnswer4" class=button onclick="checkAnswer4()" value="">
+    </div>
 
     <div id="inGame-scoreBox3">
         <div id="currentScore3" class="currentScore">
@@ -106,10 +117,13 @@
 
 <!--Thanks Page-->
 <div id="thanks-page" class="instruction-page">
+    <div id="totalWA" class="header"></div>
     <div id="thanks" style="margin-top: 40px;">
         Thank you for completing this quiz
     </div>
-    <button type="button" class="button" onclick="goBackToMenu()">Back to the Menu</button>
+    <div class="buttonCenter" id="buttonSelect4">
+        <button type="button" class="button" onclick="goBackToMenu()">Back to the Menu</button>
+    </div>
 </div>
 
 </body>

@@ -119,6 +119,8 @@ function initializeWordAssociations() {
 
 function endWordAssociations() {
     clearInterval(downloadTimer3);
+    document.getElementById("totalWA").innerHTML = ("You got " + numberCorrectWA.toString() + " associations Correct!");
+
     gotoThanks();
 }
 

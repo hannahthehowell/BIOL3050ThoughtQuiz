@@ -2,9 +2,7 @@
 ////////////////////////// DEFINING GLOBALS //////////////////////////
 
 let numberCorrectGrid = 0;
-let correctAnswerGrid = null;
 
-let previousTime = performance.now();
 let canvas = null;
 let context = null;
 let canvasF = null;
@@ -151,6 +149,8 @@ function initializeGrid() {
 }
 
 function start() {
+    document.getElementById("submitGridButton").style.display = "block";
+
     let canvasElem = document.querySelector("canvas");
     canvasElem.addEventListener("mousedown", function(e) {
         let mousePos = getMousePosition(canvasElem, e);
@@ -216,12 +216,20 @@ function transitionSequence() {
 
 
 function submitGrid() {
-    // test to see how many tiles correct
+    for (let row=0; row< numCells; row++) {
+        for (let col=0; col<numCells; col++) {
+            let tile = grid[row][col];
+            if (tile.currentColor === tile.correctColor) {
+                numberCorrectGrid++;
+            }
+        }
+    }
     endGrid();
 }
 
 function endGrid() {
     context.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById("totalGrid").innerHTML = ("You got " + numberCorrectGrid.toString() + "/25 tiles Correct!");
 
     gotoInstructions3();
 }
@@ -235,7 +243,6 @@ function toggleTileColor(mousePosition) {
     let col = Math.trunc(x / COORD_SIZE *numCells);
     let row = Math.trunc(y / COORD_SIZE *numCells);
     let tile = grid[row][col];
-    console.log(row, col);
 
     if (tile.currentColor === "white") {
         tile.currentColor = "red";

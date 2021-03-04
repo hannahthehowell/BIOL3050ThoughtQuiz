@@ -31,7 +31,7 @@ function checkAnswer() {
 ////////////////////////// COUNTDOWN //////////////////////////
 
 function startCountdown1() {
-    let timeLeft = 1;  // TODO replace with 30
+    let timeLeft = 30;
     downloadTimer1 = setInterval(function(){
         if(timeLeft <= 0){
             clearInterval(downloadTimer1);
@@ -46,8 +46,19 @@ function startCountdown1() {
 
 ////////////////////////// BEGINNING //////////////////////////
 
+function setListener() {
+    let answerBox = document.getElementById("userAnswer");
+    answerBox.addEventListener("keydown", function(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            checkAnswer();
+        }
+    });
+}
+
 function initializeMath() {
     clearInterval(downloadTimer1);
+    setListener();
     document.getElementById("userAnswer").focus();
     document.getElementById("numCorrectMath").innerHTML = numberCorrectMath.toString();
     generateEquation();
@@ -59,6 +70,9 @@ function initializeMath() {
 
 function endMath() {
     clearInterval(downloadTimer1);
+    document.getElementById("userAnswer").value = '';
+    document.getElementById("totalMath").innerHTML = ("You got " + numberCorrectMath.toString() + " answers Correct!");
+
     gotoInstructions2();
 }
 

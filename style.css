@@ -11,6 +11,7 @@ body {
     border: 1px solid black;
     border-radius: 15px;
     padding: 10px;
+    padding: 10px;
     margin: 20px;
     text-align: center;
     width:fit-content;
@@ -65,7 +66,7 @@ body {
     margin: 0 auto;
 }
 
-#buttonSelect {
+#buttonSelect, #buttonSelect1, #buttonSelect2, #buttonSelect3, #buttonSelect4, #submitButtons, #mathAnswerSubmission {
     text-align: center;
     margin: 20px;
 }
@@ -179,6 +180,8 @@ canvas {
     text-align: center;
     margin: 28px;
 }
+
+
 
 
 /* /////////////// GRID PAGE /////////////// */
