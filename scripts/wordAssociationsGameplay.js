@@ -36,7 +36,7 @@ function shuffle (array) {
 
 }
 
-/**  prior
+/**
  * read file into 2D array - phrase then answer per row
  */
 function readInFile() {

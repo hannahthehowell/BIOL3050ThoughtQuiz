@@ -14,11 +14,20 @@
 <!--Menu Page-->
 <div id="menu-page">
     <div class="header">
-        Thought, Memory, and Comprehension Quiz v.2
+        Thought, Memory, and Comprehension Quiz
     </div>
-    <div id="buttonSelect">
-        <button type="button" id="start" class="button" onclick="gotoInstructions1()">Click to Start</button>
+    <div class="header">
+        This survey will take around 2 to 5 minutes and be completely anonymous
     </div>
+    <form style="margin: 20px" id="ageSubmission" class="inputForm">
+        <label for="userAge" style="font-size: 28px">Your Age:</label>
+        <input id="userAge" type="number" style="font-size: 20px; width: 50px">
+        <br>
+        <input type="button" class=button onclick="checkAge()" value="Click to Start">
+    </form>
+
+    <div class="header" id="userAgePrompt" style="display: none">You have to put in your age before beginning</div>
+    <div class="header" id="userAgeWarning" style="display: none">You have to be at least 18 to take this survey</div>
 
     <button type="button" id="creditsOption" class="button" onclick="viewCredits()">View Credits</button>
 
@@ -46,8 +55,8 @@
 <!--GamePlay Page 1-->
 <div id="math-page">
     <div id="math_eq" class="header"></div>
-    <form style="margin: 20px" id="mathAnswerSubmission">
-        <input id="userAnswer" type="number">
+    <form style="margin: 20px" id="mathAnswerSubmission" class="inputForm">
+        <input id="userAnswer" type="number" style="font-size: 20px; width: 75px">
         <br>
         <input type="button" class=button onclick="checkAnswer()" value="Enter">
     </form>
@@ -118,7 +127,7 @@
 <!--Thanks Page-->
 <div id="thanks-page" class="instruction-page">
     <div id="totalWA" class="header"></div>
-    <div id="thanks" style="margin-top: 40px;">
+    <div id="thanks" style="margin-top: 40px;" class="header">
         Thank you for completing this quiz
     </div>
     <div class="buttonCenter" id="buttonSelect4">

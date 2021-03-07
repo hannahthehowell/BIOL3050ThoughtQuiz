@@ -89,6 +89,9 @@ function goBackToMenu() {
     document.getElementById("instruction-3-page").style.display = "none";
     document.getElementById("word-association-page").style.display = "none";
     document.getElementById("thanks-page").style.display = "none";
+
+    document.getElementById("userAgePrompt").style.display = "none";
+    document.getElementById("userAgeWarning").style.display = "none";
 }
 
 function viewCredits() {
@@ -101,6 +104,20 @@ function viewCredits() {
     document.getElementById("instruction-3-page").style.display = "none";
     document.getElementById("word-association-page").style.display = "none";
     document.getElementById("thanks-page").style.display = "none";
+}
+
+function checkAge() {
+    if (document.getElementById("userAge").value === "") {
+        document.getElementById("userAgeWarning").style.display = "none";
+        document.getElementById("userAgePrompt").style.display = "block";
+    }
+    else if (document.getElementById("userAge").value < 18) {
+        document.getElementById("userAgeWarning").style.display = "block";
+        document.getElementById("userAgePrompt").style.display = "none";
+    }
+    else {
+        gotoInstructions1();
+    }
 }
 
 function gotoInstructions1() {
