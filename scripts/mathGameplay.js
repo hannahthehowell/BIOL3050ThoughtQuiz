@@ -31,7 +31,7 @@ function checkAnswer() {
 ////////////////////////// COUNTDOWN //////////////////////////
 
 function startCountdown1() {
-    let timeLeft = 30;
+    let timeLeft = 30;  // TODO Make sure this is 30 at production
     downloadTimer1 = setInterval(function(){
         if(timeLeft <= 0){
             clearInterval(downloadTimer1);
