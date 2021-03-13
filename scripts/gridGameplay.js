@@ -148,7 +148,7 @@ function initializeGrid() {
     transitionSequence();
 }
 
-function start() {
+function start(numCells) {
     document.getElementById("submitGridButton").style.display = "block";
 
     let canvasElem = document.querySelector("canvas");
@@ -159,7 +159,22 @@ function start() {
         renderGrid();
     });
 
-    renderGrid();
+    renderGrid(numCells);
+}
+
+function start4() {
+    let numCells = 4;
+    start(numCells);
+}
+
+function start5() {
+    let numCells = 5;
+    start(numCells);
+}
+
+function start6() {
+    let numCells = 6;
+    start(numCells);
 }
 
 

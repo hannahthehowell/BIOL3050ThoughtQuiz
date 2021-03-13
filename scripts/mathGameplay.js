@@ -1,24 +1,20 @@
-////////////////////////// DEFINING GLOBALS //////////////////////////
-
-let downloadTimer1 = '';
-let numberCorrectMath = 0;
-let correctAnswerMath = null;
-
-
 ////////////////////////// MATH //////////////////////////
 
 function generateEquation() {
-    let LHS_randomNumber = Math.floor(Math.random() * 100);
-    let RHS_randomNumber = Math.floor(Math.random() * 100);
-    correctAnswerMath = LHS_randomNumber + RHS_randomNumber;
+    let LHS_randomNumber = Math.floor(Math.random() * 90 + 10);
+    let RHS_randomNumber = Math.floor(Math.random() * 50 + 10);
+    //let correctAnswerMath = LHS_randomNumber + RHS_randomNumber;
 
-    document.getElementById("math_eq").innerHTML = (LHS_randomNumber + " + " + RHS_randomNumber + " = ?");
+    document.getElementById("math_eq").innerHTML = (LHS_randomNumber + " + " + RHS_randomNumber);
 }
 
 function checkAnswer() {
+    let equation = document.getElementById("math_eq").innerHTML;
+    let correctAnswerMath = eval(equation);
     let userAnswer = document.getElementById('userAnswer').value;
 
     if (parseInt(userAnswer) === correctAnswerMath) {
+        let numberCorrectMath = parseInt(document.getElementById("numCorrectMath").innerHTML);
         numberCorrectMath++;
         document.getElementById("numCorrectMath").innerHTML = numberCorrectMath.toString();
     }
@@ -32,7 +28,7 @@ function checkAnswer() {
 
 function startCountdown1() {
     let timeLeft = 30;  // TODO Make sure this is 30 at production
-    downloadTimer1 = setInterval(function(){
+    let downloadTimer1 = setInterval(function(){
         if(timeLeft <= 0){
             clearInterval(downloadTimer1);
             endMath();
@@ -57,7 +53,8 @@ function setListener() {
 }
 
 function initializeMath() {
-    clearInterval(downloadTimer1);
+    let numberCorrectMath = 0;
+
     setListener();
     document.getElementById("userAnswer").focus();
     document.getElementById("numCorrectMath").innerHTML = numberCorrectMath.toString();
@@ -69,7 +66,7 @@ function initializeMath() {
 ////////////////////////// ENDING //////////////////////////
 
 function endMath() {
-    clearInterval(downloadTimer1);
+    let numberCorrectMath = parseInt(document.getElementById("numCorrectMath").innerHTML);
     document.getElementById("userAnswer").value = '';
     document.getElementById("totalMath").innerHTML = ("You got " + numberCorrectMath.toString() + " answers Correct!");
 

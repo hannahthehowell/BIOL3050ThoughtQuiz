@@ -68,6 +68,15 @@ function readInFile() {
         ["Underwear is to pants as Socks is to" ,"shoes"],
         ["Road is to bike as River is to","canoe"]
     ];
+
+    let getData = async () => {
+        return fetch('/WordAssociationsMasterList.csv', {cache: 'reload'}).then(it => it.text());
+    }
+
+    let handleData = (data) => {
+        const lines = data.split('\n');
+        return lines.slice(1, -1).map(it => it.split(',').map(it => parseInt(it)));
+    }
 }
 
 
