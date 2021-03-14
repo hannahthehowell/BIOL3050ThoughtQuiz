@@ -1,20 +1,23 @@
+
+////////////////////////// DEFINING GLOBALS //////////////////////////
+
+let correctAnswerMath = 0;
+let numberCorrectMath = 0;
+
 ////////////////////////// MATH //////////////////////////
 
 function generateEquation() {
     let LHS_randomNumber = Math.floor(Math.random() * 90 + 10);
     let RHS_randomNumber = Math.floor(Math.random() * 50 + 10);
-    //let correctAnswerMath = LHS_randomNumber + RHS_randomNumber;
+    correctAnswerMath = LHS_randomNumber + RHS_randomNumber;
 
     document.getElementById("math_eq").innerHTML = (LHS_randomNumber + " + " + RHS_randomNumber);
 }
 
 function checkAnswer() {
-    let equation = document.getElementById("math_eq").innerHTML;
-    let correctAnswerMath = eval(equation);
     let userAnswer = document.getElementById('userAnswer').value;
 
     if (parseInt(userAnswer) === correctAnswerMath) {
-        let numberCorrectMath = parseInt(document.getElementById("numCorrectMath").innerHTML);
         numberCorrectMath++;
         document.getElementById("numCorrectMath").innerHTML = numberCorrectMath.toString();
     }
