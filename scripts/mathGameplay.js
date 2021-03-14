@@ -1,6 +1,8 @@
 
 ////////////////////////// DEFINING GLOBALS //////////////////////////
 
+let userKey = null;
+
 let correctAnswerMath = 0;
 let numberCorrectMath = 0;
 
@@ -56,8 +58,6 @@ function setListener() {
 }
 
 function initializeMath() {
-    let numberCorrectMath = 0;
-
     setListener();
     document.getElementById("userAnswer").focus();
     document.getElementById("numCorrectMath").innerHTML = numberCorrectMath.toString();
@@ -69,11 +69,28 @@ function initializeMath() {
 ////////////////////////// ENDING //////////////////////////
 
 function endMath() {
-    let numberCorrectMath = parseInt(document.getElementById("numCorrectMath").innerHTML);
     document.getElementById("userAnswer").value = '';
     document.getElementById("totalMath").innerHTML = ("You got " + numberCorrectMath.toString() + " answers Correct!");
 
     gotoInstructions2();
+}
+
+////////////////////////// OTHER //////////////////////////
+
+function setAndCheckLocalStorage() {
+    let userKey = localStorage.getItem('userKey323');
+    if (userKey === null) {
+        let today = new Date();
+        let day = today.getUTCDate().toString();
+        let hour = ('0' + today.getUTCHours()).substr(-2).toString();
+        let minute = ('0' + today.getUTCMinutes()).substr(-2).toString();
+        let second = ('0' + today.getUTCSeconds()).substr(-2).toString();
+        let rand1 = Math.floor(Math.random() * 10).toString();
+        let rand2 = Math.floor(Math.random() * 10).toString();
+        let rand3 = Math.floor(Math.random() * 10).toString();
+        userKey = day + hour + minute + second + rand1 + rand2 + rand3;
+        localStorage['userKey323'] = userKey;
+    }
 }
 
 
@@ -116,6 +133,7 @@ function checkAge() {
         document.getElementById("userAgePrompt").style.display = "none";
     }
     else {
+        setAndCheckLocalStorage();
         gotoInstructions1();
     }
 }
