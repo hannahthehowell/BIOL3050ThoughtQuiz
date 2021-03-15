@@ -1,7 +1,7 @@
 
 ////////////////////////// DEFINING GLOBALS //////////////////////////
 
-let numberCorrectGrid = 0;
+var numberCorrectGrid = 0;
 
 let canvas = null;
 let context = null;

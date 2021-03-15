@@ -1,8 +1,10 @@
 
 ////////////////////////// DEFINING GLOBALS //////////////////////////
 
+var age = 0;
+
 let correctAnswerMath = 0;
-let numberCorrectMath = 0;
+var numberCorrectMath = 0;
 
 ////////////////////////// MATH //////////////////////////
 
@@ -75,21 +77,7 @@ function endMath() {
 
 ////////////////////////// OTHER //////////////////////////
 
-function setAndCheckLocalStorage() {
-    let userKey = localStorage.getItem('userKey323');
-    if (userKey === null) {
-        let today = new Date();
-        let day = today.getUTCDate().toString();
-        let hour = ('0' + today.getUTCHours()).substr(-2).toString();
-        let minute = ('0' + today.getUTCMinutes()).substr(-2).toString();
-        let second = ('0' + today.getUTCSeconds()).substr(-2).toString();
-        let rand1 = Math.floor(Math.random() * 10).toString();
-        let rand2 = Math.floor(Math.random() * 10).toString();
-        let rand3 = Math.floor(Math.random() * 10).toString();
-        userKey = day + hour + minute + second + rand1 + rand2 + rand3;
-        localStorage['userKey323'] = userKey;
-    }
-}
+
 
 
 ////////////////////////// DISPLAYING PAGES //////////////////////////
@@ -131,7 +119,7 @@ function checkAge() {
         document.getElementById("userAgePrompt").style.display = "none";
     }
     else {
-        setAndCheckLocalStorage();
+        age = document.getElementById("userAge").value;
         gotoInstructions1();
     }
 }

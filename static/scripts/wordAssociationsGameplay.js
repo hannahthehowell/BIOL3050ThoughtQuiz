@@ -1,8 +1,10 @@
 
 ////////////////////////// DEFINING GLOBALS //////////////////////////
 
+var userKey = null;
+
 let downloadTimer3 = '';
-let numberCorrectWA = 0;
+var numberCorrectWA = 0;
 let correctAnswerWA = null;
 
 let phraseArray = [];
@@ -156,7 +158,7 @@ function checkAnswerToPhrase(userValue) {
 ////////////////////////// COUNTDOWN //////////////////////////
 
 function startCountdown3() {
-    let timeLeft = 30;  // TODO Make sure this is 30 at production
+    let timeLeft = 3;  // TODO Make sure this is 30 at production
     downloadTimer3 = setInterval(function(){
         if(timeLeft <= 0){
             clearInterval(downloadTimer3);
@@ -186,9 +188,50 @@ async function initializeWordAssociations() {
 
 ////////////////////////// ENDING //////////////////////////
 
+function setAndCheckLocalStorage() {
+    userKey = localStorage.getItem('userKey323');
+    if (userKey === null) {
+        let today = new Date();
+        let day = today.getUTCDate().toString();
+        let hour = ('0' + today.getUTCHours()).substr(-2).toString();
+        let minute = ('0' + today.getUTCMinutes()).substr(-2).toString();
+        let second = ('0' + today.getUTCSeconds()).substr(-2).toString();
+        let rand1 = Math.floor(Math.random() * 10).toString();
+        let rand2 = Math.floor(Math.random() * 10).toString();
+        let rand3 = Math.floor(Math.random() * 10).toString();
+        userKey = day + hour + minute + second + rand1 + rand2 + rand3;
+        localStorage['userKey323'] = userKey;
+        return false;
+    }
+    return true;
+}
+
 function endWordAssociations() {
     clearInterval(downloadTimer3);
     document.getElementById("totalWA").innerHTML = ("You got " + numberCorrectWA.toString() + " associations Correct!");
+
+    let day = new Date();
+    let trialNum = setAndCheckLocalStorage() ? 2:1;
+
+    fetch("/userScores", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "user_key": userKey,
+            "age": age,
+            "day": day.getDate(),
+            "time": day.getHours().toString() + ":" + day.getMinutes().toString(),
+            "num_math": numberCorrectMath,
+            "num_grid": numberCorrectGrid,
+            "num_wa": numberCorrectWA,
+            "trial": trialNum
+        })
+    }).then(() => {
+        console.log("Submitted")
+    })
 
     gotoThanks();
 }
