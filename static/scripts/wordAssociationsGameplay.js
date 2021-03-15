@@ -158,7 +158,7 @@ function checkAnswerToPhrase(userValue) {
 ////////////////////////// COUNTDOWN //////////////////////////
 
 function startCountdown3() {
-    let timeLeft = 3;  // TODO Make sure this is 30 at production
+    let timeLeft = 30;  // TODO Make sure this is 30 at production
     downloadTimer3 = setInterval(function(){
         if(timeLeft <= 0){
             clearInterval(downloadTimer3);
