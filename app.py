@@ -9,8 +9,8 @@ app = Flask(__name__, static_url_path="/")
 from postgres import Postgres
 db = Postgres(url=os.environ["DATABASE_URL"])
 
-db.run("create table if not exists scores (id serial, user_key bigint, age int, day int, time varchar(5), num_math int, num_grid int, "
-       "num_wa int, trial int)")
+#db.run("create table if not exists scores (id serial, user_key bigint, age int, day int, time varchar(5), num_math int, num_grid int, "
+#       "num_wa int, trial int)")
 
 @app.route('/')
 def index():
