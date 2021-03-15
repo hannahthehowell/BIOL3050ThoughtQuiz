@@ -1,8 +1,6 @@
 
 ////////////////////////// DEFINING GLOBALS //////////////////////////
 
-let userKey = null;
-
 let correctAnswerMath = 0;
 let numberCorrectMath = 0;
 
@@ -32,7 +30,7 @@ function checkAnswer() {
 ////////////////////////// COUNTDOWN //////////////////////////
 
 function startCountdown1() {
-    let timeLeft = 30;  // TODO Make sure this is 30 at production
+    let timeLeft = 1;  // TODO Make sure this is 30 at production
     let downloadTimer1 = setInterval(function(){
         if(timeLeft <= 0){
             clearInterval(downloadTimer1);

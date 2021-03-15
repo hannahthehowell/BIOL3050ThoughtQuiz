@@ -40,44 +40,49 @@ function shuffle (array) {
 /**
  * read file into 2D array - phrase then answer per row
  */
-function readInFile() {
-    phraseArray = [
-        ["Bee is to honey as Silk is to" ,"worm"],
-        ["Trunk is to tree as Shaft is to","umbrella"],
-        ["Lactose is to milk as Gluten is to","bread"],
-        ["Cold is to scarf as Hot is to" ,"tank top"],
-        ["Pig is to bacon as Cow is to" ,"beef"],
-        ["Pages are to book as Words are to","sentences"],
-        ["Roof is to house Lid is to" ,"tupperware"],
-        ["Swan is to pond as Shark is to" ,"ocean"],
-        ["Baby is to animal as Fruit is to" ,"trees"],
-        ["Coke is to Pepsi as Chocolate is to" ,"vanilla"],
-        ["Smell is to touch as Red Power Ranger is to" ,"Yellow Power Ranger"],
-        ["Walk is to run as Trot is to","gallop"],
-        ["Peter is to Wendy as Romeo is to" ,"Juliet"],
-        ["Broccoli is to carrot as Banana is to","mango"],
-        ["Earth is to planet as Sun is to" ,"star"],
-        ["Keyboard is to writing as Paintbrush is to" ,"painting"],
-        ["Tea is to kettle as Coffee is to" ,"pot"],
-        ["Stage is to play as Theatre is to","movie"],
-        ["Bullet is to gun as Arrow is to" ,"bow"],
-        ["Caterpillar is to butterfly as tadpole is to" ,"frog"],
-        ["Octopus is to spider as Eel is to" ,"snake"],
-        ["Foot is to leg as Hand is to" ,"arm"],
-        ["Weddings are to white as Funerals are to" ,"black"],
-        ["Remote is to tv as Controller is to" ,"Xbox"],
-        ["Underwear is to pants as Socks is to" ,"shoes"],
-        ["Road is to bike as River is to","canoe"]
-    ];
+async function readInFile() {
+    // phraseArray = [
+    //     ["Bee is to honey as Silk is to" ,"worm"],
+    //     ["Trunk is to tree as Shaft is to","umbrella"],
+    //     ["Lactose is to milk as Gluten is to","bread"],
+    //     ["Cold is to scarf as Hot is to" ,"tank top"],
+    //     ["Pig is to bacon as Cow is to" ,"beef"],
+    //     ["Pages are to book as Words are to","sentences"],
+    //     ["Roof is to house Lid is to" ,"tupperware"],
+    //     ["Swan is to pond as Shark is to" ,"ocean"],
+    //     ["Baby is to animal as Fruit is to" ,"trees"],
+    //     ["Coke is to Pepsi as Chocolate is to" ,"vanilla"],
+    //     ["Smell is to touch as Red Power Ranger is to" ,"Yellow Power Ranger"],
+    //     ["Walk is to run as Trot is to","gallop"],
+    //     ["Peter is to Wendy as Romeo is to" ,"Juliet"],
+    //     ["Broccoli is to carrot as Banana is to","mango"],
+    //     ["Earth is to planet as Sun is to" ,"star"],
+    //     ["Keyboard is to writing as Paintbrush is to" ,"painting"],
+    //     ["Tea is to kettle as Coffee is to" ,"pot"],
+    //     ["Stage is to play as Theatre is to","movie"],
+    //     ["Bullet is to gun as Arrow is to" ,"bow"],
+    //     ["Caterpillar is to butterfly as tadpole is to" ,"frog"],
+    //     ["Octopus is to spider as Eel is to" ,"snake"],
+    //     ["Foot is to leg as Hand is to" ,"arm"],
+    //     ["Weddings are to white as Funerals are to" ,"black"],
+    //     ["Remote is to tv as Controller is to" ,"Xbox"],
+    //     ["Underwear is to pants as Socks is to" ,"shoes"],
+    //     ["Road is to bike as River is to","canoe"]
+    // ];
 
-    let getData = async () => {
-        return fetch('/WordAssociationsMasterList.csv', {cache: 'reload'}).then(it => it.text());
+
+
+    let getData = () => {
+        return fetch("WordAssociationMasterList.csv", {cache: 'reload'}).then(it => it.text());
     }
 
     let handleData = (data) => {
         const lines = data.split('\n');
-        return lines.slice(1, -1).map(it => it.split(',').map(it => parseInt(it)));
+        return lines.slice(1, -1).map(it => it.split(','));
     }
+
+    await getData().then(data => {phraseArray = handleData(data)});
+    //phraseArray = handleData(data);
 }
 
 
@@ -167,8 +172,9 @@ function startCountdown3() {
 
 ////////////////////////// BEGINNING //////////////////////////
 
-function initializeWordAssociations() {
-    readInFile();
+async function initializeWordAssociations() {
+    await readInFile();
+    //while (phraseArray.length === 0) {}
     shuffle(phraseArray);
 
     clearInterval(downloadTimer3);
@@ -190,7 +196,7 @@ function endWordAssociations() {
 
 ////////////////////////// DISPLAYING PAGES //////////////////////////
 
-function gotoWordAssociations() {
+async function gotoWordAssociations() {
     document.getElementById("menu-page").style.display = "none";
     document.getElementById("credits-page").style.display = "none";
     document.getElementById("instruction-1-page").style.display = "none";
@@ -201,7 +207,7 @@ function gotoWordAssociations() {
     document.getElementById("word-association-page").style.display = "block";
     document.getElementById("thanks-page").style.display = "none";
 
-    initializeWordAssociations();
+    await initializeWordAssociations();
 }
 
 function gotoThanks() {
